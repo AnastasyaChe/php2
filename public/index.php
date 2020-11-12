@@ -29,13 +29,16 @@
 // var_dump($a1->foo()); //2
 // var_dump($b1->foo()); //2
 //так как наследуется в отдельный класс вместе со статическими переменными. и изменения в разных классах не влияют друг на друга.
-class A {
-    public function foo() {
+class A
+{
+    public function foo()
+    {
         static $x = 0;
         echo ++$x;
     }
 }
-class B extends A {
+class B extends A
+{
 }
 $a1 = new A;
 $b1 = new B;
