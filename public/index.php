@@ -1,3 +1,4 @@
+
 <?php
 // class A {
 //     public function foo() {
@@ -47,38 +48,3 @@ var_dump($a1->foo()); //2
 var_dump($b1->foo()); //3
 //скобки после new A это срабатвание метода __construct(). Так метод этот не прописан в теле класса, можно не ставить скобки.
 
-class Product {
-    public $id;
-    public $name;
-    public $price;
-    public $description;
-
-    public function __construct($id, $name, $price, $description){
-        $this->id =$id;
-        $this->name =$name;
-        $this->price =$price;
-        $this->description =$description;
-    }
-    
-    public function getAll(){}
-
-    public function getById(){}
-
-    public function setPrice($new_price) {
-        $this->price = $new_price;
-    }
-
-}
-
-class Furniture extends Product {
-    public $category;
-
-    public function __construct($id, $name, $price, $description, $category){
-        parent::__construct($id, $name, $price, $description);
-        $this->category =$category;
-    }
-
-    public function getCategory() {
-        return $this->category;
-    }
-}
