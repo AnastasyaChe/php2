@@ -8,4 +8,6 @@ interface ModelInterface
     function getById(int $id);
 
     function getTableName() : string;
+
+    
 }
