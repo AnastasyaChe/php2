@@ -50,11 +50,13 @@ abstract class Model implements ModelInterface
         }
         $update_fields = implode(",", $update_fields);
         $sql = "UPDATE {$this->tableName} SET {$update_fields} WHERE id = :id";
-        return $this->db->execute($sql);
+        return $this->db->execute($sql, [':id' => $this->id]);
     }
-    function delete(int $id)
+    function delete()
     {
-        return $this->db->execute("DELETE FROM {$this->tableName} WHERE id = :id");
+        $sql = "DELETE * FROM {$this->tableName} WHERE id = :id";
+        return $this->db->execute($sql, [':id' => $this->id]);
+        
     }
     
 }
