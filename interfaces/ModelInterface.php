@@ -1,13 +1,14 @@
 <?php
+
 namespace app\interfaces;
 
 interface ModelInterface
 {
-    function getAll();
+    static function getAll();
 
-    function getById(int $id);
+    static function getById(int $id);
 
-    function getTableName() : string;
+    static function getTableName(): string;
 
-    
+    function save();
 }

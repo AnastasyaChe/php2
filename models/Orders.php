@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-class Orders extends Model
+class Orders extends Record
 {
     public $id;
     public $user_id;
@@ -9,7 +9,7 @@ class Orders extends Model
     public $count;
       
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "orders";
     }

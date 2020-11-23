@@ -2,24 +2,20 @@
 
 namespace app\models;
 
-class Product extends Model
+class Product extends Record
 {
     public $id;
     public $name;
-    public $about;
+    public $description;
     public $price;
-    public $categoryId;
+    public $category_id;
 
-    
     public function getByCategoryId(int $categoryId)
     {
-
     }
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
-       return "gallery";
+        return "gallery";
     }
-
-
 }

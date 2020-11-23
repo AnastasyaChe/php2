@@ -13,7 +13,7 @@ class Db
         'host' => 'localhost',
         'login' => 'root',
         'password' => 'root',
-        'database' => 'php2020',
+        'database' => 'php20202',
         'charset' => 'utf8'
     ];
 
@@ -46,23 +46,30 @@ class Db
         return $pdoStatement;
     }
 
-   
-
-    public function queryAll(string $sql, array $params = [])
+    public function queryOne(string $sql, array $params = [], string $className = null)
     {
-        return $this->query($sql,  $params)->fetchAll();
+        return $this->queryAll( $sql,  $params, $className)[0];
     }
 
-
-    public function queryOne(string $sql, array $params = [])
+    public function queryAll(string $sql, array $params = [], string $className = null)
     {
-        return $this->queryAll( $sql,  $params)[0];
+        $pdoStatement = $this->query($sql,  $params);
+        if(isset($className)) {
+            $pdoStatement->setFetchMode(
+                \PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE,
+                $className
+            );
+        }
+        return $pdoStatement->fetchAll();
     }
-    
 
     public function execute(string $sql, array $params = []) : int
     {
         return $this->query($sql, $params)->rowCount();
+    }
+    public function getLastInsertId()
+    {
+        return $this->getConnection()->lastInsertId();
     }
 
     private function buildDsnString()

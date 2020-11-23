@@ -1,7 +1,7 @@
 <?php
 namespace app\models;
 
-class UserInfo extends Model
+class UserInfo extends Record
 {
     public $id;
     public $fio;
@@ -11,7 +11,7 @@ class UserInfo extends Model
 
     
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "user_info";
     }

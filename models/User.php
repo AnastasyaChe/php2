@@ -1,19 +1,16 @@
 <?php
 namespace app\models;
 
-class User extends Model
+class User extends Record
 {
-    public $id;
     public $name;
     public $email;
-    public $login;
-    public $password;
 
     public function getByLogin($login) {
 
     }
 
-    public function getTableName(): string
+    public static function getTableName(): string
     {
         return "users";
     }
