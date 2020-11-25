@@ -102,6 +102,12 @@ abstract class Record implements ModelInterface
         $this->db->execute($sql, $params);
         $this->id = $this->db->getLastInsertId();
     }
+    public function save() {
+        if(is_null($this->id) {
+            $this->insert();
+        }else{
+            $this->update();
+  
 
     protected static function getQuery($sql, $params = []) {
         return Db::getInstance()->queryAll($sql,$params, get_called_class());
