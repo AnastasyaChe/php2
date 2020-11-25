@@ -6,10 +6,11 @@ class Product extends Model
 {
     public $id;
     public $name;
-    public $description;
+    public $about;
     public $price;
     public $categoryId;
 
+    
     public function getByCategoryId(int $categoryId)
     {
 
@@ -17,7 +18,7 @@ class Product extends Model
 
     public function getTableName(): string
     {
-       return "products";
+       return "gallery";
     }
 
 

@@ -17,7 +17,6 @@ class Db
         'charset' => 'utf8'
     ];
 
-    /** @var \PDO */
     private $connection = null;
 
     protected function getConnection()
@@ -40,10 +39,6 @@ class Db
     }
 
 
-    /**
-     * @param string $sql SELECT * FROM products WHERE id = :id
-     * @param array $params [':id' => 2]
-     */
     private function query(string $sql, array $params = [])
     {
         $pdoStatement = $this->getConnection()->prepare($sql);
@@ -51,15 +46,19 @@ class Db
         return $pdoStatement;
     }
 
-    public function queryOne(string $sql, array $params = [])
-    {
-        return $this->queryAll( $sql,  $params)[0];
-    }
+   
 
     public function queryAll(string $sql, array $params = [])
     {
         return $this->query($sql,  $params)->fetchAll();
     }
+
+
+    public function queryOne(string $sql, array $params = [])
+    {
+        return $this->queryAll( $sql,  $params)[0];
+    }
+    
 
     public function execute(string $sql, array $params = []) : int
     {

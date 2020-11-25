@@ -26,4 +26,37 @@ abstract class Model implements ModelInterface
         $sql = "SELECT * FROM {$this->tableName} WHERE id = :id";
         return $this->db->queryOne($sql, [':id' => $this->id]);
     }
+
+    function create() {
+        $keys = [];
+        $values = [];
+        foreach($this as $key => $value) {
+           $keys[] = $key;
+           $values[] = $value;
+        }
+        $keys = implode(",", $keys);
+        $values = implode(",", $values);
+
+        $sql = "INSERT INTO {$this->tableName} $keys VALUES $values";
+        return $this->db->execute($sql);
+
+    }
+    function update(){
+        
+        $update_fields = [];
+        foreach($this as $key => $value){
+            $value = is_numeric($value) ? : "'$value'";
+            $update_fields[] = "{$key} = {$value}";
+        }
+        $update_fields = implode(",", $update_fields);
+        $sql = "UPDATE {$this->tableName} SET {$update_fields} WHERE id = :id";
+        return $this->db->execute($sql, [':id' => $this->id]);
+    }
+    function delete()
+    {
+        $sql = "DELETE * FROM {$this->tableName} WHERE id = :id";
+        return $this->db->execute($sql, [':id' => $this->id]);
+        
+    }
+    
 }
